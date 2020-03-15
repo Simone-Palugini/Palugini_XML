@@ -24,6 +24,5 @@ namespace Palugini_XML
         {
             InitializeComponent();
         }
-
     }
 }
