@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Palugini_XML"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="MainWindow" Height="602" Width="1087">
+    <Grid Height="583" Background="#FFC81616">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="243*"/>
+            <RowDefinition Height="214*"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="lst_ListaAlunni" Margin="113,224,113,83" FontSize="20" Grid.RowSpan="2"/>
+        <Button x:Name="btn_aggiungi" Content="Visualizza lista alunni" HorizontalAlignment="Left" Margin="113,195,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.969,-3.781" Height="49" Width="298" FontSize="25" Click="btn_aggiungi_Click" Grid.Row="1"/>
+        <Label Content="Registro elettronico" HorizontalAlignment="Center" VerticalAlignment="Top" Height="58" Width="291" FontSize="30" Foreground="White" FontWeight="Bold"/>
+        <Label Content="Classeviva" HorizontalAlignment="Left" Margin="412,34,0,0" VerticalAlignment="Top" Height="85" Width="256" FontSize="48" FontWeight="Bold" FontStyle="Italic" Foreground="White" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.353"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="Lista alunni" HorizontalAlignment="Center" Margin="0,159,0,86" Width="198" FontSize="35" Foreground="White"/>
+        <Button x:Name="btn_stop" Content="Interrompi visualizzazione" HorizontalAlignment="Left" Margin="663,195,0,0" Grid.Row="1" VerticalAlignment="Top" Height="49" Width="298" FontSize="25" Click="btn_stop_Click"/>
     </Grid>
 </Window>
