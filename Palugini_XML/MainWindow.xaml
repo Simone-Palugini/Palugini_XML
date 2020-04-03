@@ -25,6 +25,8 @@
             </Label.RenderTransform>
         </Label>
         <Label Content="Lista alunni" HorizontalAlignment="Center" Margin="0,159,0,86" Width="198" FontSize="35" Foreground="White"/>
-        <Button x:Name="btn_stop" Content="Interrompi visualizzazione" HorizontalAlignment="Left" Margin="663,195,0,0" Grid.Row="1" VerticalAlignment="Top" Height="49" Width="298" FontSize="25" Click="btn_stop_Click"/>
+        <Button x:Name="btn_stop" IsEnabled="False" Content="Interrompi visualizzazione" HorizontalAlignment="Left" Margin="663,195,0,0" Grid.Row="1" VerticalAlignment="Top" Height="49" Width="298" FontSize="25" Click="btn_stop_Click"/>
+        <TextBox x:Name="txt_modifica" IsEnabled="False" HorizontalAlignment="Left" Margin="765,64,0,0" Text="modifica le presenze" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="38"/>
+        <Button x:Name="btn_modifica" IsEnabled="False" Content="Modifica presenze" HorizontalAlignment="Left" Margin="765,119,0,0" VerticalAlignment="Top" Width="196" Height="36"/>
     </Grid>
 </Window>

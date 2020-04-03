@@ -22,16 +22,17 @@ namespace Palugini_XML
     /// </summary>
     public partial class MainWindow : Window
     {
+        CancellationTokenSource ct;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        bool token = false;
-
         private void btn_aggiungi_Click(object sender, RoutedEventArgs e)
         {
-            token = true;
+            ct = new CancellationTokenSource();
+            btn_aggiungi.IsEnabled = false;
+            btn_stop.IsEnabled = true;
             lst_ListaAlunni.Items.Clear();
             Task.Factory.StartNew(()=>CaricaDati());
         }
@@ -43,6 +44,7 @@ namespace Palugini_XML
             XDocument xmlDoc = XDocument.Load(path);
             XElement xmlstudenti = xmlDoc.Element("studenti");
             var xmlstudente = xmlstudenti.Elements("studente");
+            Thread.Sleep(1000);
 
             foreach (var item in xmlstudente)
             {
@@ -53,17 +55,27 @@ namespace Palugini_XML
                 s.Cognome = xmlLastName.Value;
                 s.Nome = xmlFirstName.Value;
                 s.Presenze = Convert.ToInt32(xmlPresenze.Value);
-                studenti = s;
-                Dispatcher.Invoke(() => lst_ListaAlunni.Items.Add(studenti));
-                Thread.Sleep(800);
-                if (!token)
+
+                Dispatcher.Invoke(() => lst_ListaAlunni.Items.Add(s));
+
+                if (ct.Token.IsCancellationRequested)
+                {
                     break;
-            }                   
+                }
+                Thread.Sleep(1000);                
+            }
+
+            Dispatcher.Invoke(() =>
+            {
+                btn_aggiungi.IsEnabled = true;
+                btn_stop.IsEnabled = false;
+                ct = null;
+            });
         }
 
         private void btn_stop_Click(object sender, RoutedEventArgs e)
         {
-            token = false;
-        }
+            ct.Cancel();
+        }           
     }
 }
