@@ -12,7 +12,7 @@ namespace Palugini_XML
 
         public override string ToString()
         {
-            return $"{Cognome} {Nome}, presenze: {Presenze}";
+            return $"{Cognome} {Nome}";
         }
     }
 }

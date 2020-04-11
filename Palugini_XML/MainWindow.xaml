@@ -11,7 +11,7 @@
             <RowDefinition Height="243*"/>
             <RowDefinition Height="214*"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="lst_ListaAlunni" Margin="113,224,113,83" FontSize="20" Grid.RowSpan="2"/>
+        <ListBox x:Name="lst_ListaAlunni" Margin="113,224,113,83" FontSize="20" Grid.RowSpan="2" SelectionChanged="lst_ListaAlunni_SelectionChanged"/>
         <Button x:Name="btn_aggiungi" Content="Visualizza lista alunni" HorizontalAlignment="Left" Margin="113,195,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.969,-3.781" Height="49" Width="298" FontSize="25" Click="btn_aggiungi_Click" Grid.Row="1"/>
         <Label Content="Registro elettronico" HorizontalAlignment="Center" VerticalAlignment="Top" Height="58" Width="291" FontSize="30" Foreground="White" FontWeight="Bold"/>
         <Label Content="Classeviva" HorizontalAlignment="Left" Margin="412,34,0,0" VerticalAlignment="Top" Height="85" Width="256" FontSize="48" FontWeight="Bold" FontStyle="Italic" Foreground="White" RenderTransformOrigin="0.5,0.5">
@@ -26,7 +26,9 @@
         </Label>
         <Label Content="Lista alunni" HorizontalAlignment="Center" Margin="0,159,0,86" Width="198" FontSize="35" Foreground="White"/>
         <Button x:Name="btn_stop" IsEnabled="False" Content="Interrompi visualizzazione" HorizontalAlignment="Left" Margin="663,195,0,0" Grid.Row="1" VerticalAlignment="Top" Height="49" Width="298" FontSize="25" Click="btn_stop_Click"/>
-        <TextBox x:Name="txt_modifica" IsEnabled="False" HorizontalAlignment="Left" Margin="765,64,0,0" Text="modifica le presenze" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="38"/>
-        <Button x:Name="btn_modifica" IsEnabled="False" Content="Modifica presenze" HorizontalAlignment="Left" Margin="765,119,0,0" VerticalAlignment="Top" Width="196" Height="36"/>
+        <TextBox x:Name="txt_modifica" IsEnabled="False" HorizontalAlignment="Left" Margin="765,117,0,0" Text="modifica le presenze" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="38" FontSize="16"/>
+        <Button x:Name="btn_modifica" IsEnabled="False" Content="Modifica presenze" HorizontalAlignment="Left" Margin="765,172,0,0" VerticalAlignment="Top" Width="196" Height="36" FontSize="16" Click="btn_modifica_Click"/>
+        <Label x:Name="lbl_studente" Content="" IsEnabled="False" HorizontalAlignment="Left" Margin="765,29,0,0" VerticalAlignment="Top" Width="196" Height="34" FontSize="16"/>
+        <Label x:Name="lbl_presenze" Content="Presenze:" IsEnabled="False" HorizontalAlignment="Left" Margin="765,82,0,0" VerticalAlignment="Top" Width="196" Height="35" FontSize="16"/>
     </Grid>
 </Window>

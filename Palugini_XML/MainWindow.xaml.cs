@@ -28,6 +28,7 @@ namespace Palugini_XML
             InitializeComponent();
         }
 
+
         private void btn_aggiungi_Click(object sender, RoutedEventArgs e)
         {
             ct = new CancellationTokenSource();
@@ -37,6 +38,7 @@ namespace Palugini_XML
             Task.Factory.StartNew(()=>CaricaDati());
         }
         
+
         private void CaricaDati()
         {
             Studente studenti = new Studente();
@@ -73,9 +75,64 @@ namespace Palugini_XML
             });
         }
 
+
         private void btn_stop_Click(object sender, RoutedEventArgs e)
         {
             ct.Cancel();
-        }           
+        }
+
+        private void lst_ListaAlunni_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lbl_studente.IsEnabled = true;
+            lbl_presenze.IsEnabled = true;
+            btn_modifica.IsEnabled = true;
+            txt_modifica.IsEnabled = true;
+
+            Studente s = (Studente)lst_ListaAlunni.SelectedItem;
+            if (s != null)
+            {
+                lbl_studente.Content = s.ToString();
+                txt_modifica.Text = s.Presenze.ToString();
+            }
+        }
+
+        private void btn_modifica_Click(object sender, RoutedEventArgs e)
+        {
+            Studente s = (Studente)lst_ListaAlunni.SelectedItem;
+            int valore = Convert.ToInt32(txt_modifica.Text);
+            if (s.Presenze != valore)
+            {
+                s.Presenze = valore;
+                MessageBox.Show("Operazione eseguita con successo, OK");
+            }
+            Task.Factory.StartNew(Scrivi);
+
+            lbl_studente.IsEnabled = false;
+            lbl_presenze.IsEnabled = false;
+            btn_modifica.IsEnabled = false;
+            txt_modifica.IsEnabled = false;
+        }
+
+
+        private void Scrivi()
+        {
+            string path = @"ListaAlunni.xml";
+
+            XElement xmlstudenti = new XElement("studenti");
+
+            foreach (Studente studente in lst_ListaAlunni.Items)
+            {
+                XElement xmlstudente = new XElement("studente");
+                XElement xmlcognome = new XElement("cognome");
+                XElement xmlnome = new XElement("nome");
+                XElement xmlpresenze = new XElement("presenze");
+
+                xmlstudente.Add(xmlcognome);
+                xmlstudente.Add(xmlnome);
+                xmlstudente.Add(xmlpresenze);
+                xmlstudenti.Add(xmlstudente);
+            }
+            xmlstudenti.Save(path);
+        }
     }
 }
